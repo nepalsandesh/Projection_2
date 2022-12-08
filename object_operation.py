@@ -97,9 +97,6 @@ class Object:
             print("Printed form engine")
             self.scale *= 1.08
             
-        
-
-            
         if event.key == pygame.K_s:
             print("==================++++++++++++++")
             self.scale /= 1.08
@@ -120,4 +117,6 @@ class Object:
     def get_corners(self):
         return self.corners
     
-    
+    def draw_lines(self, screen, color):
+        if len(self.corners) > 2:
+            pygame.draw.lines(screen, color, False, self.corners, 1)    

@@ -7,7 +7,7 @@ screen = pygame.display.set_mode((1920, 1080))
 clock = pygame.time.Clock()
 FPS = 1
 
-points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(50)]
+points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(100)]
 
 
 
@@ -29,28 +29,12 @@ while True:
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 exit()
-                
-            # if event.key == pygame.K_w:
-            #     print("==================++++++++++++++")
-            #     obj.scale *= 1.1
-                
-            # if event.key == pygame.K_s:
-            #     print("==================++++++++++++++")
-            #     obj.scale /= 1.1
-                
-            # if event.key == pygame.K_UP:
-            #     print("==================++++++++++++++")
-            #     distance *= 1.1
-                
-            # if event.key == pygame.K_DOWN:
-            #     print("==================++++++++++++++")
-            #     distance /= 1.1
-        
+                   
             obj.handle_event(event)
         
 
 
-    points_array =  obj.get_projected_array(save=True, limit=5000)
+    points_array =  obj.get_projected_array(save=True, limit=500)
 
 
 
@@ -67,10 +51,12 @@ while True:
     #     pygame.draw.line(screen, (155, 100, 255), point, random.choice(points_array))
     
     
-    if len(obj.corners) > 2:
-        # pygame.draw.lines(screen, (144,244,44), False, obj.corners)
-        for i in obj.corners:
-            pygame.draw.circle(screen, (118, 118,255), i, 1)
+    # if len(obj.corners) > 2:
+    #     pygame.draw.lines(screen, (144,244,44), False, obj.corners)
+    #     for i in obj.corners:
+    #         pygame.draw.circle(screen, (118, 118,255), i, 1)
+    
+    obj.draw_lines(screen=screen, color=(118,199,255))
     
         
     # obj.rotate_x(0.0005)
