@@ -120,3 +120,16 @@ class Object:
     def draw_lines(self, screen, color):
         if len(self.corners) > 2:
             pygame.draw.lines(screen, color, False, self.corners, 1)    
+
+    
+    def draw_ellipse(self, screen,numv, color=(118,118,255), line=False):
+        if len(self.corners) > 2:
+            for i in range(len(self.corners)):
+                pygame.draw.circle(screen, color, self.corners[i], 1)
+                if line == True:
+                    if len(self.corners)%numv == 0:
+                    # pass
+                        print("svajrvnvsjsvnsvnvwinweiufwe")
+                        if len(self.corners) > numv:
+                            pygame.draw.line(screen, (55, 155, 55), self.corners[numv], self.corners[i], 1)
+                            # pass

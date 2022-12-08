@@ -17,9 +17,10 @@ distance = 200
 
 
 while True:
-    # clock.tick(1)
+    clock.tick()
     screen.fill((0,0,0))
     # [exit() for event in pygame.event.get() if event.type == pygame.QUIT]
+    pygame.display.set_caption(str(clock.get_fps()))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -34,7 +35,7 @@ while True:
         
 
 
-    points_array =  obj.get_projected_array(save=True, limit=500)
+    points_array =  obj.get_projected_array(save=True, limit=5000)
 
 
 
@@ -42,6 +43,7 @@ while True:
         pygame.draw.circle(screen, (0,255,255), point, 5)
 
 
+    """Under Development Renderings"""
     # for point in points_array:
     #     pygame.draw.line(screen, (155, 155, 0), point, points_array[0])
          
@@ -56,12 +58,17 @@ while True:
     #     for i in obj.corners:
     #         pygame.draw.circle(screen, (118, 118,255), i, 1)
     
-    obj.draw_lines(screen=screen, color=(118,199,255))
     
+    
+    """Drawing stuffs here"""
         
-    # obj.rotate_x(0.0005)
-    obj.rotate_y(0.01)
+    # obj.rotate_x(0.01)
+    # obj.rotate_y(0.01)
     obj.rotate_z(0.01)
+    
+    # obj.draw_lines(screen=screen, color=(118,199,255))
+    obj.draw_ellipse(screen, line=True, numv=100)
+    
     
     pygame.display.flip()
     
