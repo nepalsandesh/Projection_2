@@ -45,7 +45,7 @@ while True:
 
     """Under Development Renderings"""
     # for point in points_array:
-    #     pygame.draw.line(screen, (155, 155, 0), point, points_array[0])
+    #     pygame.draw.line(screen, (155, 155, 0), point, points_array[10])
          
     
     # pygame.draw.lines(screen, (155, 155, 100), True, points_array, 1)
@@ -53,21 +53,22 @@ while True:
     #     pygame.draw.line(screen, (155, 100, 255), point, random.choice(points_array))
     
     
-    # if len(obj.corners) > 2:
-    #     pygame.draw.lines(screen, (144,244,44), False, obj.corners)
-    #     for i in obj.corners:
-    #         pygame.draw.circle(screen, (118, 118,255), i, 1)
+    if len(obj.corners) > 2:
+        # pygame.draw.lines(screen, (144,244,44), False, obj.corners)
+        for i in obj.corners:
+            pygame.draw.circle(screen, (118, 118,255), i, 1)
     
     
     
     """Drawing stuffs here"""
         
-    # obj.rotate_x(0.01)
-    # obj.rotate_y(0.01)
+    obj.rotate_x(0.01)
+    obj.rotate_y(0.01)
     obj.rotate_z(0.01)
     
-    # obj.draw_lines(screen=screen, color=(118,199,255))
+    obj.draw_lines(screen=screen, color=(118,199,255))
     obj.draw_ellipse(screen, line=True, numv=100)
+    obj.draw_ellipses(100, screen)
     
     
     pygame.display.flip()

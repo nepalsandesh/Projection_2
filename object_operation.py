@@ -129,7 +129,14 @@ class Object:
                 if line == True:
                     if len(self.corners)%numv == 0:
                     # pass
-                        print("svajrvnvsjsvnsvnvwinweiufwe")
+                        # print("svajrvnvsjsvnsvnvwinweiufwe")
                         if len(self.corners) > numv:
                             pygame.draw.line(screen, (55, 155, 55), self.corners[numv], self.corners[i], 1)
-                            # pass
+                            
+                            
+    
+    def draw_ellipses(self, number_of_points, screen, ):
+        for i in range(len(self.corners)):
+        
+            print("++++++______--------->>>>>>>")
+            pygame.draw.line(screen, (255,155,55), self.corners[i], self.corners[i-number_of_points], 1)
