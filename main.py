@@ -14,7 +14,8 @@ points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-1
 obj = object_operation.Object(100, 200, points, (1920, 1080))
 
 distance = 200
-
+angle = 0.01
+pause = False
 
 while True:
     clock.tick()
@@ -32,7 +33,13 @@ while True:
                 exit()
                    
             obj.handle_event(event)
-        
+            
+            if event.key == pygame.K_SPACE:
+                pause = True
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_SPACE:
+                pause = False
 
 
     points_array =  obj.get_projected_array(save=True, limit=5000)
@@ -61,14 +68,20 @@ while True:
     
     
     """Drawing stuffs here"""
+    if pause == True:
+        obj.rotate_x(0)
+        obj.rotate_y(0)
+        obj.rotate_z(0)
         
-    obj.rotate_x(0.01)
-    obj.rotate_y(0.01)
-    obj.rotate_z(0.01)
+    elif pause == False:
+        obj.rotate_x(0.01)
+        obj.rotate_y(0.01)
+        obj.rotate_z(0.01)
+
     
     obj.draw_lines(screen=screen, color=(118,199,255))
-    obj.draw_ellipse(screen, line=True, numv=100)
-    obj.draw_ellipses(100, screen)
+    # obj.draw_ellipse(screen, line=True, numv=100)
+    # obj.draw_ellipses(100, screen)
     
     
     pygame.display.flip()
