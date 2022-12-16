@@ -1,17 +1,22 @@
 import pygame
 import object_operation
 import random
+from shapes import *
+import torus
 
 pygame.init()
 screen = pygame.display.set_mode((1920, 1080))
 clock = pygame.time.Clock()
 FPS = 1
 
-points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(100)]
+# points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(100)]
 
 
+points = torus.Points()
+scale = 10000
+number_of_points = len(points)
 
-obj = object_operation.Object(100, 200, points, (1920, 1080))
+obj = object_operation.Object(scale, 200, points, (1920, 1080))
 
 distance = 200
 angle = 0.01
@@ -42,7 +47,7 @@ while True:
                 pause = False
 
 
-    points_array =  obj.get_projected_array(save=True, limit=5000)
+    points_array =  obj.get_projected_array(save=True, limit=50000)
 
 
 
@@ -63,7 +68,8 @@ while True:
     if len(obj.corners) > 2:
         # pygame.draw.lines(screen, (144,244,44), False, obj.corners)
         for i in obj.corners:
-            pygame.draw.circle(screen, (118, 118,255), i, 1)
+            # pygame.draw.circle(screen, (118, 118,255), i, 1)
+            pass
     
     
     
@@ -79,9 +85,10 @@ while True:
         obj.rotate_z(0.01)
 
     
-    obj.draw_lines(screen=screen, color=(118,199,255))
-    # obj.draw_ellipse(screen, line=True, numv=100)
-    # obj.draw_ellipses(100, screen)
+    # obj.draw_lines(screen=screen, color=(118,199,255))
+    # obj.draw_ellipse(screen, line=False, numv=100)
+    obj.draw_ellipses(number_of_points, screen)
+    # obj.connect_points(screen, torus.Indexes())
     
     
     pygame.display.flip()

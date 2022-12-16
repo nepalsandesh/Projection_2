@@ -140,3 +140,21 @@ class Object:
         
             print("++++++______--------->>>>>>>")
             pygame.draw.line(screen, (255,155,55), self.corners[i], self.corners[i-number_of_points], 1)
+            
+
+    def connect_points(self, screen, points_sequence):
+        connection = []
+        for i in range(len(points_sequence)):
+            z = 1/(self.distance - points_sequence[i][2])
+            projection_matrix = numpy.matrix([
+                [z, 0, 0],
+                [0, z, 0]
+            ])
+            coordinate = numpy.dot(projection_matrix, self.coordinates[i])
+        
+            x = int(coordinate[0]*self.scale + self.resolution[0]//2)
+            y = int(coordinate[1]*self.scale + self.resolution[1]//2)
+            connection.append((x, y))
+            
+        pygame.draw.lines(screen, (155,115,99), False, connection)
+        
