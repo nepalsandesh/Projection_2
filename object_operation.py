@@ -159,4 +159,4 @@ class Object:
             
         # pygame.draw.lines(screen, (155,115,99), False, connection)
         
-        
+        pass

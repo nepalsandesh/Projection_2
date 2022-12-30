@@ -1,8 +1,10 @@
 import pygame
+import numpy
 import object_operation
 import random
 from shapes import *
 import torus
+import _12_30_2022 as dec30
 
 pygame.init()
 screen = pygame.display.set_mode((1920, 1080))
@@ -11,16 +13,34 @@ FPS = 1
 
 # points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(100)]
 
+cuboid = []
 
-points = torus.Points()
+for x in range(5):
+    for y in range(5):
+        for z in range(5):
+            cuboid.append((x-2.5,y-2.5,z-2.5))
+
+
+# points = torus.Points()
+# points = tetrahedron
+points = cuboid
 scale = 10000
 number_of_points = len(points)
+
+
 
 obj = object_operation.Object(scale, 200, points, (1920, 1080))
 
 distance = 200
 angle = 0.01
 pause = False
+
+obj2 = dec30.Object(10, 10, numpy.zeros((5,5,5)))
+obj2.modify_matrix()
+
+
+
+
 
 while True:
     clock.tick()
@@ -47,12 +67,11 @@ while True:
                 pause = False
 
 
-    points_array =  obj.get_projected_array(save=True, limit=50000)
+    points_array =  obj.get_projected_array(save=True, limit=5000)
 
 
+    
 
-    for point in points_array:
-        pygame.draw.circle(screen, (0,255,255), point, 5)
 
 
     """Under Development Renderings"""
@@ -63,6 +82,18 @@ while True:
     # pygame.draw.lines(screen, (155, 155, 100), True, points_array, 1)
     # for point in points_array:
     #     pygame.draw.line(screen, (155, 100, 255), point, random.choice(points_array))
+    
+    
+    for point in points_array:
+        pygame.draw.circle(screen, (0,255,255), point, 5)
+
+    for i in range(len(points_array)):
+        pygame.draw.line(screen, (155,155,25), points_array[i-1], points_array[i], 5)
+
+                
+        
+
+    
     
     
     if len(obj.corners) > 2:
@@ -87,8 +118,13 @@ while True:
     
     # obj.draw_lines(screen=screen, color=(118,199,255))
     # obj.draw_ellipse(screen, line=False, numv=100)
-    obj.draw_ellipses(number_of_points, screen)
+    # obj.draw_ellipses(number_of_points, screen)
     # obj.connect_points(screen, torus.Indexes())
+    
+    
+    # for tetrahedron points connection
+    # for points in tetrahedron_connection:
+        # pygame.draw.lines(screen, (255,255,255), False, obj.coordinates(), 1)
     
     
     pygame.display.flip()
