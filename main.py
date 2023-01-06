@@ -5,11 +5,12 @@ import random
 from shapes import *
 import torus
 import _12_30_2022 as dec30
+from circle import Circle
 
 pygame.init()
 screen = pygame.display.set_mode((1920, 1080))
 clock = pygame.time.Clock()
-FPS = 1
+FPS = 60
 
 # points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(100)]
 
@@ -23,7 +24,14 @@ for x in range(5):
 
 # points = torus.Points()
 # points = tetrahedron
-points = cuboid
+
+circle = Circle(50, 5)
+
+
+
+
+# points = cuboid
+points = circle.get_coordinates()
 scale = 10000
 number_of_points = len(points)
 
@@ -42,8 +50,13 @@ obj2.modify_matrix()
 
 
 
+
+
+
+control = False
+
 while True:
-    clock.tick()
+    clock.tick(FPS)
     screen.fill((0,0,0))
     # [exit() for event in pygame.event.get() if event.type == pygame.QUIT]
     pygame.display.set_caption(str(clock.get_fps()))
@@ -61,10 +74,20 @@ while True:
             
             if event.key == pygame.K_SPACE:
                 pause = True
+                
+            if event.key == pygame.K_r:
+                control = True
+
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_SPACE:
                 pause = False
+                
+            if event.key == pygame.K_r:
+                control = False
+
+                
+
 
 
     points_array =  obj.get_projected_array(save=True, limit=5000)
@@ -116,10 +139,11 @@ while True:
         obj.rotate_z(0.01)
 
     
-    # obj.draw_lines(screen=screen, color=(118,199,255))
-    # obj.draw_ellipse(screen, line=False, numv=100)
-    # obj.draw_ellipses(number_of_points, screen)
-    # obj.connect_points(screen, torus.Indexes())
+    if control == True:
+        # obj.draw_lines(screen=screen, color=(118,199,255))
+        # obj.draw_ellipse(screen, line=False, numv=100)
+        obj.draw_ellipses(number_of_points, screen)
+        # obj.connect_points(screen, torus.Indexes())
     
     
     # for tetrahedron points connection
