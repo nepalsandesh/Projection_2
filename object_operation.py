@@ -93,22 +93,83 @@ class Object:
             
         
     
-    def handle_event(self, event):
-        if event.key == pygame.K_w:
-            print("Printed form engine")
-            self.scale *= 1.08
+    def handle_event(self):
+        """Event handler for the object"""
+        
+        rotate = not False
+        
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_x]:
+            self.rotate_x(0.01)
             
-        if event.key == pygame.K_s:
-            print("==================++++++++++++++")
-            self.scale /= 1.08
+        if keys[pygame.K_y]:
+            self.rotate_y(0.01)
+
+        if keys[pygame.K_z]:
+            self.rotate_z(0.01)
+
+        if keys[pygame.K_w]:
+            self.scale *= 1.01
+
+        if keys[pygame.K_s]:
+            self.scale /= 1.01
             
-        if event.key == pygame.K_UP:
-            print("==================++++++++++++++")
-            self.distance *= 1.05
+        if keys[pygame.K_UP]:
+            self.distance *= 1.01
+
+        if keys[pygame.K_DOWN]:
+            self.distance /= 1.01  
+             
+        if keys[pygame.K_ESCAPE]:
+            pygame.quit()
+            return exit()
             
-        if event.key == pygame.K_DOWN:
-            print("==================++++++++++++++")
-            self.distance /= 1.05
+            
+            
+        # for event in pygame.event.get():
+        #     if event.type == pygame.QUIT:
+        #         pygame.quit()
+                
+                
+        #     if event.type == pygame.KEYDOWN:
+        #         if event.key == pygame.K_ESCAPE:
+        #             pygame.quit()
+                    
+        #         if event.key == pygame.K_w:
+        #             print("Hi")
+        #             self.scale *= 1.08
+                    
+        #         if event.key == pygame.K_s:
+        #             self.scale /= 1.08
+                    
+        #         if event.key == pygame.K_x:
+        #             self.rotate_x(1)
+        
+        # if event.type == pygame.KEYDOWN:
+            
+
+        #     if event.key == pygame.K_SPACE:
+        #         pause = True
+                
+        #     if event.key == pygame.K_r:
+        #         control = True
+
+
+        # if event.type == pygame.KEYUP:
+        #     if event.key == pygame.K_SPACE:
+        #         pause = False
+                
+        #     if event.key == pygame.K_r:
+        #         control = False
+        
+
+        # if event.key == pygame.K_UP:
+        #     print("==================++++++++++++++")
+        #     self.distance *= 1.05
+            
+        # if event.key == pygame.K_DOWN:
+        #     print("==================++++++++++++++")
+        #     self.distance /= 1.05
         
         
 
