@@ -22,6 +22,7 @@ for i in range(0, len(points)-36):
         indexes.append((i-35, i+36, i+1))
 
 def Points():
+    print(len(points))
     return points
 
 def Indexes():

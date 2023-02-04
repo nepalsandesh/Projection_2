@@ -6,11 +6,15 @@ from shapes import *
 import torus
 import _12_30_2022 as dec30
 from circle import Circle
+from new_approach.array_operations import Cartesian
 
 pygame.init()
 screen = pygame.display.set_mode((1920, 1080))
 clock = pygame.time.Clock()
 FPS = 60
+
+
+axis = Cartesian(1920,1080,1)
 
 # points = [(random.randint(-100,100), random.randint(-100,100), random.randint(-100,100)) for i in range(100)]
 
@@ -22,7 +26,7 @@ for x in range(5):
             cuboid.append((x-2.5,y-2.5,z-2.5))
 
 
-# points = torus.Points()
+points = numpy.array(torus.Points())
 # points = tetrahedron
 
 circle = Circle(50, 5)
@@ -30,7 +34,7 @@ circle = Circle(50, 5)
 
 
 
-points = cuboid
+# points = cuboid
 # points = circle.get_coordinates()
 scale = 10000
 number_of_points = len(points)
@@ -75,13 +79,13 @@ while True:
     #     pygame.draw.line(screen, (155, 100, 255), point, random.choice(points_array))
     
     
-    for point in points_array:
-        pygame.draw.circle(screen, (0,255,255), point, 5)
+    # for point in points_array:
+        # pygame.draw.circle(screen, (0,255,255), point, 5)
 
     # for i in range(len(points_array)):
     #     pygame.draw.line(screen, (155,155,25), points_array[i-1], points_array[i], 5)
 
-                
+                # pass
         
 
     
@@ -96,9 +100,10 @@ while True:
     
     
     """Drawing stuffs here"""
- 
+    
 
-    # obj.draw_lines(screen=screen, color=numpy.random.randint(0,255, 3))   
+
+    # obj.draw_lines(screen=screen, color=(100, 20, 70))   
     obj.draw_ellipse(screen, line=False, numv=100)
     # obj.draw_ellipses(number_of_points, screen)
     # obj.connect_points(screen, torus.Indexes())
@@ -108,6 +113,7 @@ while True:
     # for points in tetrahedron_connection:
         # pygame.draw.lines(screen, (255,255,255), False, obj.coordinates(), 1)
     
+    axis.draw_axis(screen, (75,75,75), 2)
     
     pygame.display.flip()
     pygame.event.pump()

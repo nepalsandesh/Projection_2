@@ -183,7 +183,7 @@ class Object:
         if len(self.corners) > 2:
             pygame.draw.lines(screen, color, False, self.corners, 1)    
 
-    
+
     def draw_ellipse(self, screen,numv, color=(118,118,255), line=False):
         if len(self.corners) > 2:
             for i in range(len(self.corners)):
